@@ -25,10 +25,12 @@ export const Wrapper = styled.div`
   }
 
   form {
+    display: flex;
+    flex-direction: column;
     margin-top: 50px;
+    width: 100%;
 
     input {
-      width: 100%;
       margin-bottom: 10px;
       height: 50px;
       border: 0;
@@ -39,8 +41,14 @@ export const Wrapper = styled.div`
       font-size: 16px;
     }
 
+    span {
+      color: #f94d6a;
+      font-weight: bold;
+      margin: 0 0 10px;
+      align-self: flex-start;
+    }
+
     button {
-      width: 100%;
       margin-top: 5px;
       height: 50px;
       font-weight: bold;
