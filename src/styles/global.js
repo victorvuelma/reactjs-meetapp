@@ -15,7 +15,7 @@ export default createGlobalStyle`
   }
 
   html, body, #root {
-    min-height: 100%;
+    min-height: 100vh;
   }
 
   body {
@@ -36,6 +36,10 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  #root {
+    background: linear-gradient(0, #402845, #22202C);
   }
 
 `;
