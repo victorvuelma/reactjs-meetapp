@@ -24,14 +24,17 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': 'error',
+    'no-param-reassign': 'off',
+    'no-console': ['warn', { allow: ['tron'] }],
     'import/no-extraneous-dependencies': [
       'error',
       { devDependencies: ['./config-overrides.js'] },
     ],
-    'prettier/prettier': 'error',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'import/prefer-default-export': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     'react/jsx-props-no-spreading': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
