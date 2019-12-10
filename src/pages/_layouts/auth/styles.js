@@ -59,6 +59,10 @@ export const Wrapper = styled.div`
       font-size: 18px;
       transition: background 0.2s;
 
+      &:disabled {
+        opacity: 0.6;
+      }
+
       &:hover {
         background: ${darken(0.03, '#f94d6a')};
       }
