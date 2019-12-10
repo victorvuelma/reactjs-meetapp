@@ -34,7 +34,7 @@ export const Wrapper = styled.div`
       border: 0;
       border-radius: 4px;
       background: rgba(0, 0, 0, 0.2);
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.5);
       padding: 0 15px;
       font-size: 16px;
     }
@@ -58,7 +58,7 @@ export const Wrapper = styled.div`
   }
 
   a {
-    color: #fff;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: bold;
     margin-top: 20px;
   }
