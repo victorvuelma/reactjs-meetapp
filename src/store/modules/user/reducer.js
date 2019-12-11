@@ -14,13 +14,6 @@ export default function user(state = INITIAL_STATE, action) {
       case '@auth/SIGN_OUT':
         draft.profile = null;
         break;
-      case '@user/SIGN_UP_REQUEST':
-        draft.loading = true;
-        break;
-      case '@user/SIGN_UP_FAILURE':
-      case '@user/SIGN_UP_SUCCESS':
-        draft.loading = false;
-        break;
       default:
     }
   });

@@ -12,6 +12,19 @@ export function signInSuccess(token, user) {
   };
 }
 
+export function signUpRequest(data) {
+  return {
+    type: '@auth/SIGN_UP_REQUEST',
+    payload: data,
+  };
+}
+
+export function signUpSuccess() {
+  return {
+    type: '@auth/SIGN_UP_SUCCESS',
+  };
+}
+
 export function signFailure() {
   return {
     type: '@auth/SIGN_FAILURE',
