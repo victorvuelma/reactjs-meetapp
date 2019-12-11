@@ -1,10 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import { MdAddCircleOutline } from 'react-icons/md';
+
+import { updateRequest } from '~/store/modules/user/actions';
 
 import { Container } from './styles';
 
@@ -32,8 +34,13 @@ const schema = Yup.object().shape({
 
 export default function Profile() {
   const profile = useSelector(state => state.user.profile);
+  const loading = useSelector(state => state.user.loading);
 
-  function handleSubmit(data) {}
+  const dispatch = useDispatch();
+
+  function handleSubmit(data) {
+    dispatch(updateRequest(data));
+  }
 
   return (
     <Container>
@@ -51,9 +58,15 @@ export default function Profile() {
           placeholder="Confirmação de Senha"
         />
 
-        <button type="submit">
-          <MdAddCircleOutline color="#FFF" size={20} />
-          Salvar perfil
+        <button type="submit" disabled={loading}>
+          {loading ? (
+            'Aguarde...'
+          ) : (
+            <>
+              <MdAddCircleOutline color="#FFF" size={20} />
+              Salvar perfil
+            </>
+          )}
         </button>
       </Form>
     </Container>
