@@ -21,7 +21,9 @@ export default function Header() {
   return (
     <Container>
       <Content>
-        <img src={logo} alt="Logo do Meetapp" />
+        <Link to="/dashboard">
+          <img src={logo} alt="Logo do Meetapp" />
+        </Link>
 
         <aside>
           <Profile>
