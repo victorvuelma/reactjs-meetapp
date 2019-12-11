@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'no-param-reassign': 'off',
+    'no-nested-ternary': 'off',
     'no-console': ['warn', { allow: ['tron'] }],
     'import/no-extraneous-dependencies': [
       'error',

@@ -88,3 +88,17 @@ export const Meetup = styled.div`
     }
   }
 `;
+
+export const Message = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 65px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0 20px 0 30px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+`;
