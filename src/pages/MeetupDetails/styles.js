@@ -92,3 +92,11 @@ export const Header = styled.div`
     }
   }
 `;
+
+export const Message = styled.div`
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: center;
+  margin: 20px;
+`;
