@@ -55,7 +55,7 @@ export default function Dashboard() {
           <Message>Carregando...</Message>
         ) : meetups.length > 0 ? (
           meetups.map(meetup => (
-            <Meetup>
+            <Meetup key={meetup.title}>
               <strong>{meetup.title}</strong>
               <div>
                 <span>{meetup.formattedDate}</span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactModal from 'react-modal';
@@ -13,6 +13,10 @@ export default function ConfirmModal({
   onConfirm,
   ...props
 }) {
+  useEffect(() => {
+    ReactModal.setAppElement('#root');
+  }, []);
+
   return (
     <ReactModal
       {...props}

@@ -56,7 +56,7 @@ export default function MeetupDetails() {
       setShowModal(false);
 
       history.push('/dashboard');
-      toast.success('Meetup cancelado com sucesso.');
+      toast.warn('Meetup cancelado com sucesso.');
     } catch (err) {
       toast.error('Não foi possível cancelar o Meetup.');
     }
