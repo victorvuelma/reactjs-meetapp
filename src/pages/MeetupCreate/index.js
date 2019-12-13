@@ -1,11 +1,15 @@
 import React from 'react';
 
-import { Form, Input, Textarea } from '@rocketseat/unform';
+import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import { MdAddCircleOutline } from 'react-icons/md';
 
 import DatePicker from '~/components/DatePicker';
+
+import api from '~/services/api';
+
+import ImageInput from './ImageInput';
 
 import { Container } from './styles';
 
@@ -22,14 +26,24 @@ const schema = Yup.object().shape({
   location: Yup.string()
     .required('É necessário informar a localização')
     .min(5, 'A localização precisa ter pelo menos 5 caracteres'),
+  image_id: Yup.number().required('Você precisa enviar uma foto'),
 });
 
 export default function MeetupCreate() {
+  function handleSubmit(data) {
+    async function createMeetup() {
+      const response = await api.post('meetups', data);
+    }
+
+    createMeetup();
+  }
+
   return (
     <Container>
-      <Form schema={schema} onSubmit={() => {}}>
+      <Form schema={schema} onSubmit={handleSubmit}>
+        <ImageInput name="image_id" />
         <Input type="text" name="title" placeholder="Título do Meetup" />
-        <Textarea name="description" placeholder="Descrição completa" />
+        <Input multiline name="description" placeholder="Descrição completa" />
         <DatePicker
           name="date"
           showTimeSelect

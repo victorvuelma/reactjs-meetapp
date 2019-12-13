@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     input,
     textarea {
-      margin-bottom: 10px;
+      margin-top: 10px;
       width: 100%;
       border: 0;
       border-radius: 4px;
@@ -19,6 +19,10 @@ export const Container = styled.div`
       color: rgba(255, 255, 255, 0.5);
       padding: 0 15px;
       font-size: 16px;
+    }
+
+    > div:first-child {
+      margin-bottom: 10px;
     }
 
     textarea {
@@ -35,7 +39,7 @@ export const Container = styled.div`
     span {
       color: #f94d6a;
       font-weight: bold;
-      margin: 0 0 10px;
+      margin: 10px 0 0;
       align-self: flex-start;
     }
 
@@ -46,7 +50,7 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
 
-      margin-top: 10px;
+      margin-top: 20px;
       padding: 0 20px;
       height: 45px;
       font-weight: bold;
