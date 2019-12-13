@@ -9,8 +9,8 @@ import api from '~/services/api';
 
 import { Container, Select, Image } from './styles';
 
-export default function ImageInput() {
-  const { defaultValue, registerField, error, fieldName } = useField('avatar');
+export default function ImageInput({ name }) {
+  const { defaultValue, registerField, error, fieldName } = useField(name);
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
@@ -20,15 +20,12 @@ export default function ImageInput() {
   useEffect(() => {
     if (ref.current) {
       registerField({
-        fieldName,
+        name: fieldName,
         ref: ref.current,
-        path: 'props.file',
-        clearValue: fileRef => {
-          fileRef.clear();
-        },
+        path: 'dataset.file',
       });
     }
-  }, [ref.current, fieldName]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
   async function handleChange(e) {
     const data = new FormData();
@@ -71,3 +68,7 @@ export default function ImageInput() {
     </>
   );
 }
+
+ImageInput.propTypes = {
+  name: PropTypes.string.isRequired,
+};

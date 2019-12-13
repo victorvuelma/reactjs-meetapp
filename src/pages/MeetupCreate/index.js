@@ -32,7 +32,7 @@ const schema = Yup.object().shape({
 export default function MeetupCreate() {
   function handleSubmit(data) {
     async function createMeetup() {
-      const response = await api.post('meetups', data);
+      await api.post('meetups', data);
     }
 
     createMeetup();
