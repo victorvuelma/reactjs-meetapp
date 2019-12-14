@@ -66,6 +66,10 @@ export default function MeetupDetails() {
     setShowModal(true);
   }
 
+  function handleMeetupEdit() {
+    history.push(`/meetup/${meetup.id}/edit`);
+  }
+
   return (
     <Container>
       {loading ? (
@@ -83,7 +87,7 @@ export default function MeetupDetails() {
           <Header>
             <h1>{meetup.title}</h1>
             <div>
-              <button type="button">
+              <button type="button" onClick={handleMeetupEdit}>
                 <MdEdit color="#fff" size={20} />
                 Editar
               </button>

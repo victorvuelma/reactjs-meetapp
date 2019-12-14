@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { useParams } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
@@ -28,17 +29,52 @@ const schema = Yup.object().shape({
   location: Yup.string()
     .required('É necessário informar a localização')
     .min(5, 'A localização precisa ter pelo menos 5 caracteres'),
-  image_id: Yup.number().required('Você precisa enviar uma foto'),
+  image: Yup.number().required('Você precisa enviar uma foto'),
 });
 
 export default function MeetupCreate() {
-  function handleSubmit(data) {
+  const params = useParams();
+
+  const [meetup, setMeetup] = useState(null);
+
+  useEffect(() => {
+    async function loadMeetup() {
+      if (params.meetupId) {
+        try {
+          const response = await api.get(`meetups/${params.meetupId}`);
+
+          setMeetup(response.data);
+        } catch (err) {
+          history.push('/dashboard');
+
+          toast.error('Não foi possível encontrar o meetup informado.');
+        }
+      }
+    }
+    loadMeetup();
+  }, [params.meetupId]);
+
+  function handleSubmit({ image, title, description, date, location }) {
     async function createMeetup() {
       try {
-        const response = await api.post('meetups', data);
+        const data = {
+          image_id: image,
+          title,
+          description,
+          date,
+          location,
+        };
 
-        toast.success('Meetup criado com sucesso.');
+        let response = null;
+        if (params.meetupId) {
+          response = await api.put(`meetups/${params.meetupId}`, data);
 
+          toast.success('Meetup alterado com sucesso.');
+        } else {
+          response = await api.post('meetups', data);
+
+          toast.success('Meetup criado com sucesso.');
+        }
         history.push(`/meetup/${response.data.id}`);
       } catch (err) {
         toast.error(
@@ -52,8 +88,8 @@ export default function MeetupCreate() {
 
   return (
     <Container>
-      <Form schema={schema} onSubmit={handleSubmit}>
-        <ImageInput name="image_id" />
+      <Form initialData={meetup} schema={schema} onSubmit={handleSubmit}>
+        <ImageInput name="image" />
         <Input type="text" name="title" placeholder="Título do Meetup" />
         <Input multiline name="description" placeholder="Descrição completa" />
         <DatePicker
