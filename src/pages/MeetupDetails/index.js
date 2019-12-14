@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, isBefore } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { MdDeleteForever, MdEdit, MdEvent, MdPlace } from 'react-icons/md';
@@ -27,6 +27,7 @@ export default function MeetupDetails() {
 
         const data = {
           ...response.data,
+          date: parseISO(response.data.date),
           formattedDate: format(
             parseISO(response.data.date),
             "dd 'de' MMMM', às' HH'h'",
@@ -62,12 +63,20 @@ export default function MeetupDetails() {
     }
   }
 
-  function handleModalOpen() {
-    setShowModal(true);
+  function handleMeetupCancel() {
+    if (isBefore(new Date(), meetup.date)) {
+      setShowModal(true);
+    } else {
+      toast.error('Não é possível cancelar um meetup que já ocorreu.');
+    }
   }
 
   function handleMeetupEdit() {
-    history.push(`/meetup/${meetup.id}/edit`);
+    if (isBefore(new Date(), meetup.date)) {
+      history.push(`/meetup/${meetup.id}/edit`);
+    } else {
+      toast.error('Não é possível editar um meetup que já ocorreu.');
+    }
   }
 
   return (
@@ -91,7 +100,7 @@ export default function MeetupDetails() {
                 <MdEdit color="#fff" size={20} />
                 Editar
               </button>
-              <button type="button" onClick={handleModalOpen}>
+              <button type="button" onClick={handleMeetupCancel}>
                 <MdDeleteForever color="#fff" size={20} />
                 Cancelar
               </button>
