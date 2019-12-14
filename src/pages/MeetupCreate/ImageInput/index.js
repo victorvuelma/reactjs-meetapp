@@ -27,6 +27,13 @@ export default function ImageInput({ name }) {
     }
   }, []); // eslint-disable-line
 
+  useEffect(() => {
+    if (defaultValue) {
+      setFile(defaultValue.id);
+      setPreview(defaultValue.url);
+    }
+  }, [defaultValue]);
+
   async function handleChange(e) {
     const data = new FormData();
 

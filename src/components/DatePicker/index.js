@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
+import { parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { useField } from '@rocketseat/unform';
@@ -23,6 +24,12 @@ export default function DatePicker({ name, ...props }) {
       },
     });
   }, [ref.current, fieldName]); // eslint-disable-line
+
+  useEffect(() => {
+    if (defaultValue) {
+      setSelected(parseISO(defaultValue));
+    }
+  }, [defaultValue]);
 
   return (
     <>
