@@ -3,11 +3,13 @@ import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { toast } from 'react-toastify';
 import { MdAddCircleOutline } from 'react-icons/md';
 
 import DatePicker from '~/components/DatePicker';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 import ImageInput from './ImageInput';
 
@@ -32,7 +34,17 @@ const schema = Yup.object().shape({
 export default function MeetupCreate() {
   function handleSubmit(data) {
     async function createMeetup() {
-      await api.post('meetups', data);
+      try {
+        const response = await api.post('meetups', data);
+
+        toast.success('Meetup criado com sucesso.');
+
+        history.push(`/meetup/${response.data.id}`);
+      } catch (err) {
+        toast.error(
+          'Não foi possível criar o Meetup. Verifique as informações.'
+        );
+      }
     }
 
     createMeetup();
